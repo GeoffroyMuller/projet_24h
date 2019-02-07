@@ -8,6 +8,8 @@
 
 namespace justjob\vue;
 
+use justjob\model\offreEmploi;
+
 class vue
 {
     /**
@@ -265,10 +267,11 @@ END;
             $nom = $offre->nom;
             $descr = $offre->description;
             $lieux = $offre->lieu;
-            
+            $urlOffre = $this->app->urlFor('offre',['id'=>$offre->id]);
+
             $html=$html.<<<END
   <div class="col-sm-9"><div class="container triche">
-  <a href="">
+  <a href="$urlOffre">
         <div class="panel-group">
 
             <div class="panel panel-info">
@@ -289,8 +292,115 @@ END;
         return $html;
     }
 
+    public function htmlOffre(){
+        $element = $this->elements;
+        $urlSupp = $this->app->urlFor('supprimerOffre',['id'=>$element->id]);
+        $html=<<<END
+ <div class="panel panel-info">
+        <div class="panel-heading">$element->nom</div>
+        <div class="panel-body">$element->description - Lieux : $element->lieu</div>
+      </div>
+
+      <div class="row">
+          <div class="col-sm-4"><a href="$urlSupp"><button type="submit" class="btn btn-default" id="boutonSupprimer">Supprimer l'offre</button></div></a>
+          <div class="col-sm-4"><button type="submit" class="btn btn-default" id="boutonFermer">Fermer l'offre</button></div>
+          <div class="col-sm-4"><button type="submit" class="btn btn-default" id="boutonCandidater">Candidater pour l'offre</button></div>
+      </div>
+
+END;
+        return $html;
+
+    }
+
+    public function htmlCandidature(){
+        $elements = $this->elements;
+        $html=<<<END
+ <div class="container">
+        <h2>Liste des candidatures</h2>
+        <div class="panel-group">
+END;
+
+        foreach ($elements as $element){
+            $offre = offreEmploi::where('id','=',$element->idoffre);
+            $html=<<<END
+          <div class="panel panel-info">
+            <div class="panel-heading">$offre->nom</div>
+            <div class="panel-body">$offre->description</div>
+          </div>
+END;
+        }
+        $html=$html.<<<END
+        </div>
+      </div>
+END;
+
+
+
+
+        return $html;
+    }
+
+    public function htmlHome(){
+        $html = <<<END
+  <h1 style="text-align:center;">JustJob</h1>
+
+
+    <div class="container" style="width:30%">
+      <h2>Nos offres récentes</h2>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="../../images/offre.jpg" alt="Mirabelle" style="width:100%;">
+          </div>
+
+          <div class="item">
+            <img src="../../images/offre.jpg" alt="Mushu" style="width:100%;">
+          </div>
+
+          <div class="item">
+            <img src="../../images/offre.jpg" alt="Chaton" style="width:100%;">
+          </div>
+
+          <div class="item">
+            <img src="../../images/offre.jpg" alt="Party" style="width:100%;">
+          </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+<footer style="text-align:center;">
+    <p>by</p><img src="images/logo2.PNG" alt="logo" style="width:10%">
+</footer>
+
+END;
+        return $html;
+
+    }
+
     public function render(){
+        $urlCandidature = $this->app->urlFor('candidature');
         $urlDeco = $this->app->urlFor('deconnexion');
+        $urlHome = $this->app->urlFor('home');
         $estConnecte = isset($_SESSION['profile']);
         $consulterOffre = $this->app->urlFor('offreEmplois');
         $urlInscription = $this->app->urlFor('inscription');
@@ -301,7 +411,7 @@ END;
             <nav class="navbar-inverse" id="navtriche">
       <div class="container-fluid">
           <div class="navbar-header">
-              <a class="navbar-brand" href="../index.html">JustJob</a>
+              <a class="navbar-brand" href="$urlHome">JustJob</a>
           </div>
 
           <ul class="nav navbar-nav">
@@ -312,7 +422,7 @@ END;
                   </ul>
               </li>
 
-              <li><a href="candidature.html">Mes candidatures</a></li>
+              <li><a href="$urlCandidature">Mes candidatures</a></li>
 
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Transports<span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -336,7 +446,7 @@ END;
 <nav class="navbar-inverse" id="navtriche">
       <div class="container-fluid">
           <div class="navbar-header">
-              <a class="navbar-brand" href="../index.html">JustJob</a>
+              <a class="navbar-brand" href="$urlHome">JustJob</a>
           </div>
 
           <ul class="nav navbar-nav">
@@ -347,7 +457,7 @@ END;
                   </ul>
               </li>
 
-              <li><a href="candidature.html">Mes candidatures</a></li>
+              <li><a href="$urlCandidature">Mes candidatures</a></li>
 
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Transports<span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -378,6 +488,17 @@ END;
 
             case 'INSCRIPTION' :
                 $content = $this->htmlInscription();
+                break;
+            case 'AFFICHER_OFFRE':
+                $content = $this->htmlOffre();
+                break;
+
+                case 'CANDIDATURE':
+            $content = $this->htmlCandidature();
+            break;
+
+            case 'HOME':
+                $content = $this->htmlHome();
                 break;
         }
         $html=<<<END

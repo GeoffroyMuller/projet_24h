@@ -61,4 +61,9 @@ class controleurUtilisateur
         $candidature->idoffre = $idOffre;
         $candidature->save();
     }
+
+    public function supprimerOffre($id){
+        $offre = offreEmploi::where('id','=',$id);
+        $offre->delete();
+    }
 }

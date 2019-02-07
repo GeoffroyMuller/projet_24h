@@ -24,7 +24,10 @@ $app = new \Slim\Slim ;
 
 
 
-
+$app->get('/home/',function(){
+    $controleur = new \justjob\controleur\controleurAffichage();
+    $controleur->afficherHome();
+})->name('home');
 
 $app->post('/ajouterOffreEmploi/',function(){
     $controleur = new \justjob\controleur\controleurUtilisateur();
@@ -155,5 +158,27 @@ $app->get('/deconnexion/',function(){
 
 })->name('deconnexion');
 
+$app->get('/offre/:id',function($id){
+    $controleur = new \justjob\controleur\controleurAffichage();
+    $controleur->afficherOffre($id);
+})->name('offre');
+
+$app->get('/supprimerOffre/:id',function($id){
+    $controleur = new \justjob\controleur\controleurUtilisateur();
+    $controleur->supprimerOffre($id);
+    $app = \Slim\Slim::getInstance();
+    $app->redirect($app->urlFor('offreEmplois'));
+})->name('supprimerOffre');
+
+$app->get('/candidature/',function(){
+    if(isset($_SESSION['profile'])){
+        $controleur = new \justjob\controleur\controleurAffichage();
+        $controleur->afficherCandidature();
+    }else{
+        $app = \Slim\Slim::getInstance();
+        $app->redirect($app->urlFor('home'));
+    }
+
+})->name('candidature');
 
 $app->run();
