@@ -9,6 +9,7 @@
 namespace justjob\vue;
 
 use justjob\model\offreEmploi;
+use justjob\model\Utilisateur;
 
 class vue
 {
@@ -342,11 +343,12 @@ END;
 
     public function htmlHome(){
         $html = <<<END
-    <h1 style="text-align:center;">JustJob</h1>
+     <h1 style="text-align:center;">JustJob</h1><br>
+    <h3 style="text-align:center;color: grey">Rompre à l’enjeux de l’insertion professionnel des personnes handicapées</h3><br><br>
 
 
-    <div class="container" style="width:30%">
-      <h2>Nos offres récentes</h2>
+    <div class="container" style="width:40%">
+      <h2>Nos offres récentes</h2><br>
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -359,19 +361,19 @@ END;
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
           <div class="item active">
-            <img src="../images/offre.jpg" alt="Mirabelle" style="width:100%;">
+            <img src="../../images/offre.jpg" alt="Mirabelle" style="width:100%;">
           </div>
 
           <div class="item">
-            <img src="../images/offre.jpg" alt="Mushu" style="width:100%;">
+            <img src="../../images/offre.jpg" alt="Mushu" style="width:100%;">
           </div>
 
           <div class="item">
-            <img src="../images/offre.jpg" alt="Chaton" style="width:100%;">
+            <img src="../../images/offre.jpg" alt="Chaton" style="width:100%;">
           </div>
 
           <div class="item">
-            <img src="../images/offre.jpg" alt="Party" style="width:100%;">
+            <img src="../../images/offre.jpg" alt="Party" style="width:100%;">
           </div>
 
         </div>
@@ -389,7 +391,8 @@ END;
     </div>
 
 <footer style="text-align:center;">
-    <p>by</p><img src="../images/logo2.png" alt="logo" style="width:10%">
+    <br><br><br><br>
+    <p>by</p><img src="../../images/logo2.png" alt="logo" style="width:10%">
 </footer>
 
 END;
@@ -397,8 +400,86 @@ END;
 
     }
 
+    public function htmlconsultertrajet(){
+        $html = <<<END
+<h2>Les trajets proposés</h2>
+
+<div class="container">
+    <form class="form-horizontal" action="/action_page.php">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="depart">De</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="depart" placeholder="Ville de départ" name="depart">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="arrive">A</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="arrive" placeholder="Ville d'arrivée" name="arrive">
+            </div>
+        </div>
+        <div class="form-group">
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" id="boutonRecherche">Rechercher</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col-sm-3 mx-auto border" style="width: 200px;">
+        <form class="triche" method ="post">
+
+            <div class="form-group mx-auto" style="width: 200px;">
+                <label>Type de Véhicule</label>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check1">
+                    <label class="form-check-label" for="check1">Véhicule classique</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check2">
+                    <label class="form-check-label" for="check2">Véhicule aménagé</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-9">
+        <div class="container float-right triche">
+END;
+        $elements = $this->elements;
+        foreach ($elements as $element){
+            $offre = Utilisateur::where('id','=',$element->conducteur)->first();
+            $html=$html.<<<END
+ <div class="panel-group">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Conducteur - $offre->nom</div>
+                    <div class="panel-body">Description de l'offre d'emploi</div>
+                </div>
+END;
+
+        }
+        $html=$html.<<<END
+   </div>
+        </div>
+    </div>
+</div>
+END;
+
+        return $html;
+
+
+    }
+
+    public function htmlprofil(){
+        $element=$this->elements;
+        $html=
+    }
+
     public function render(){
         $urlCandidature = $this->app->urlFor('candidature');
+        $urlConsulterTrajet = $this->app->urlFor('consulterTrajet');
         $urlDeco = $this->app->urlFor('deconnexion');
         $urlHome = $this->app->urlFor('home');
         $estConnecte = isset($_SESSION['profile']);
@@ -427,7 +508,7 @@ END;
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Transports<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="mesTrajets.html">Mes trajets</a></li>
-                    <li><a href="$consulterOffre">Consulter les trajets</a></li>
+                    <li><a href="$urlConsulterTrajet">Consulter les trajets</a></li>
                   </ul>
               </li>
           </ul>
@@ -462,7 +543,7 @@ END;
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Transports<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="mesTrajets.html">Mes trajets</a></li>
-                    <li><a href="consulterTrajets.html">Consulter les trajets</a></li>
+                    <li><a href="$urlConsulterTrajet">Consulter les trajets</a></li>
                   </ul>
               </li>
           </ul>
@@ -499,6 +580,14 @@ END;
 
             case 'HOME':
                 $content = $this->htmlHome();
+                break;
+
+            case 'CONSULTER_TRAJET':
+                $content = $this->htmlconsultertrajet();
+                break;
+
+            case 'PROFIL':
+                $content = $this->htmlprofil();
                 break;
         }
         $html=<<<END

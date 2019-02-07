@@ -181,4 +181,18 @@ $app->get('/candidature/',function(){
 
 })->name('candidature');
 
+$app->get('/consultertrajet/',function(){
+    if(isset($_SESSION['profile'])){
+        $controleur= new \justjob\controleur\controleurAffichage();
+        $controleur->afficherConsulterTrajet();
+    }
+})->name('consulterTrajet');
+
+$app->get('/profil/',function(){
+    if(isset($_SESSION['profile'])){
+        $controleur = new \justjob\controleur\controleurAffichage();
+        $controleur->afficherProfil();
+    }
+})->name('profil');
+
 $app->run();

@@ -11,6 +11,8 @@ namespace justjob\controleur;
 
 use justjob\model\Candidature;
 use justjob\model\offreEmploi;
+use justjob\model\reservationTransport;
+use justjob\model\Utilisateur;
 use justjob\vue\vue;
 
 class controleurAffichage
@@ -48,6 +50,19 @@ class controleurAffichage
 
     public function afficherHome(){
         $vue = new vue(null,'HOME');
+        $vue->render();
+    }
+
+    public function afficherConsulterTrajet(){
+        $reservationTransport = reservationTransport::where('idconducteur','=',$_SESSION['profile']['userId']);
+
+        $vue= new vue($reservationTransport,'CONSULTER_TRAJET');
+        $vue->render();
+    }
+
+    public function afficherProfil(){
+        $user = Utilisateur::where('id','=',$_SESSION['profile']['userId'])->first();
+        $vue = new vue($user,'PROFIL');
         $vue->render();
     }
 
