@@ -16,13 +16,14 @@ class controleurConnexion
      * @param $uName
      * @param $uPass
      */
-    public function inscrire($uName, $uPass){
+    public function inscrire($uName, $uPass,$uAdresse){
         $hash = password_hash($uPass, PASSWORD_DEFAULT);
         try {
             if ($this->verifierNomUtilisateur($uName)) {
                 $utilisateur = new \justjob\model\Utilisateur();
                 $utilisateur->pass = $hash;
                 $utilisateur->nom = $uName;
+                $utilisateur->adresse = $uAdresse;
                 $utilisateur->save();
 
             }
@@ -44,6 +45,7 @@ class controleurConnexion
         session_start();
         $_SESSION['profile']['username'] = $utilisateur->nom;
         $_SESSION['profile']['userId'] = $utilisateur->id;
+        $_SESSION['profile']['email'] = $utilisateur->email;
         $_SESSION['profile']['client_ip'] = $_SERVER['REMOTE_ADDR'];
     }
 
@@ -82,7 +84,7 @@ class controleurConnexion
 
     }
 
-    
+
 
 
 
