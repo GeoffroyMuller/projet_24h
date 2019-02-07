@@ -100,7 +100,7 @@ END;
                 <input name="inputHandicap" type="text" id="descriphandicap" class="form-control" placeholder="Décrivez votre handicap">
                 <br>
 
-                <input id="submit" type="submit" value="S'inscrire">
+                <input  class="btn btn-primary btn-block" id="submit" type="submit" value="S'inscrire">
 
             </form>
         </div>
