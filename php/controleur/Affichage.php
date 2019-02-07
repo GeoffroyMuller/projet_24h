@@ -13,7 +13,7 @@ class Affichage
 {
 
     public function listeOffre(){
-        
+
     }
 
 }
