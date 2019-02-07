@@ -12,7 +12,7 @@ define ('SITE_ROOT', realpath(dirname(__FILE__)));
 use Illuminate\Database\Capsule\Manager as DB;
 
 $db = new DB();
-$db->addConnection(parse_ini_file('./src/conf/conf.ini'));
+$db->addConnection(parse_ini_file('./php/conf/conf.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
 
@@ -22,10 +22,7 @@ $app = new \Slim\Slim ;
 
 
 
-$app->get('/',function(){
-    $app =\Slim\Slim::getInstance();
-    $app->redirect($app->urlFor('listes'));
-})->name('home');
+
 
 
 
@@ -72,31 +69,45 @@ $app->post('/postuler/',function(){
 })->name('postuler');
 
 $app->post('/inscriptionprocess/',function(){
-    if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['adresse'])){
-        $username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
-        $adresse = filter_var($_POST['adresse'], FILTER_SANITIZE_STRING);
+    if(isset($_POST['inputUserName']) && isset($_POST['inputPassword']) && isset($_POST['inputadresspostal']) &&
+    isset($_POST['inputEmail'])){
+
+        $value = $_POST['radio'];
+        if($value === "oui"){
+            if(isset($_POST['inputHandicap'])){
+                $handicap = filter_var($_POST['inputHandicap'],FILTER_SANITIZE_STRING);
+            }else{
+                $handicap = "Aucun";
+            }
+        }else{
+            $handicap = "Aucun";
+        }
+
+        $username = filter_var($_POST['inputUserName'],FILTER_SANITIZE_STRING);
+        $adresse = filter_var($_POST['inputadresspostal'], FILTER_SANITIZE_STRING);
+        $email = filter_var($_POST['inputEmail'],FILTER_SANITIZE_EMAIL);
         $controleur = new \justjob\controleur\controleurConnexion();
-        $controleur->inscrire($username, $_POST['password'],$adresse);
+        $controleur->inscrire($username, $_POST['inputPassword'],$adresse,$email,$handicap);
     }else{
         $app = \Slim\Slim::getInstance();
-        $app->redirect($app->urlFor('erreur',['msg'=>'Veuillez entrer un nom d\'utilisateur et un mot de passe']));
+        $app->redirect($app->urlFor('inscription'));
     }
     $app = \Slim\Slim::getInstance();
     $app->redirect($app->urlFor('connexion'));
 })->name('inscriptionprocess');
 
 $app->post('/connexionprocess/',function(){
-        if(isset($_POST['username']) && isset($_POST['password'])){
-            $username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
+        if(isset($_POST['inputUserName']) && isset($_POST['inputPassword'])){
+            $username = filter_var($_POST['inputUserName'],FILTER_SANITIZE_STRING);
 
             $controleur = new \justjob\controleur\controleurConnexion();
-            $controleur->seConnecter($username, $_POST['password']);
+            $controleur->seConnecter($username, $_POST['inputPassword']);
         }else{
             $app = \Slim\Slim::getInstance();
-            $app->redirect($app->urlFor('erreur',['msg'=>'Veuillez entrer un nom d\'utilisateur et un mot de passe']));
+            $app->redirect($app->urlFor('connexion'));
         }
         $app = \Slim\Slim::getInstance();
-        $app->redirect($app->urlFor('home'));
+        $app->redirect($app->urlFor('connexion'));
 })->name('connexionprocess');
 
 $app->post('/rechercheAvecCritere/',function(){
@@ -125,6 +136,17 @@ $app->get('/connexion/',function(){
     $controleur= new \justjob\controleur\controleurAffichage();
     $controleur->afficherConnexion();
 })->name('connexion');
+
+$app->get('/inscription/',function(){
+    $controleur= new \justjob\controleur\controleurAffichage();
+    $controleur->afficherInscription();
+})->name('inscription');
+
+$app->get('/offresEmplois/',function (){
+    $controleur = new justjob\controleur\controleurAffichage();
+    $controleur->afficherListesDesOffresEmplois();
+})->name('offreEmplois');
+
 
 
 $app->run();

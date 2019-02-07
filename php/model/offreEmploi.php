@@ -9,7 +9,7 @@
 namespace justjob\model;
 
 
-class offreEmploi
+class offreEmploi extends \Illuminate\Database\Eloquent\Model
 {
     protected $table = 'offreemploi';
     protected $primaryKey = 'id';
