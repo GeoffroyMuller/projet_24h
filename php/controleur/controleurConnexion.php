@@ -8,6 +8,8 @@
 
 namespace justjob\controleur;
 
+use Slim\Slim;
+
 class controleurConnexion
 {
 
@@ -16,23 +18,16 @@ class controleurConnexion
      * @param $uName
      * @param $uPass
      */
-    public function inscrire($uName, $uPass,$uAdresse,$email){
+    public function inscrire($uName, $uPass,$uAdresse,$email,$handicap){
         $hash = password_hash($uPass, PASSWORD_DEFAULT);
-        try {
-            if ($this->verifierNomUtilisateur($uName)) {
                 $utilisateur = new \justjob\model\Utilisateur();
                 $utilisateur->pass = $hash;
                 $utilisateur->nom = $uName;
                 $utilisateur->adresse = $uAdresse;
                 $utilisateur->email = $email;
+                $utilisateur->handicap = $handicap;
                 $utilisateur->save();
 
-            }
-        }catch(\mywishlist\Exception\AuthException $e){
-            /**
-             * Page d'erreur
-             */
-        }
     }
 
 
@@ -66,7 +61,7 @@ class controleurConnexion
      */
     public function seConnecter($uName, $uPass){
         //Check credential
-        try{
+
             $utilisateur = \justjob\model\Utilisateur::where('nom','=',$uName)->first();
             if(is_null($utilisateur)){
                 throw new \mywishlist\Exception\AuthException("Le login saisi est incorrect");
@@ -75,13 +70,10 @@ class controleurConnexion
             if(password_verify($uPass,$utilisateur->pass)){
                 $this->chargerProfil($utilisateur->id);
             }else{
-                throw new \mywishlist\Exception\AuthException("Le mot de passe saisi est incorrect");
+                $slim = Slim::getInstance();
+                $slim->redirect($slim->urlFor('connexion'));
             }
-        }catch(\mywishlist\Exception\AuthException $e){
-            /**
-             * Rediriger vers une page d'erreur
-             */
-        }
+
 
     }
 
