@@ -9,6 +9,7 @@
 namespace justjob\controleur;
 
 
+use justjob\model\Candidature;
 use justjob\model\offreEmploi;
 
 class controleurUtilisateur
@@ -46,5 +47,18 @@ class controleurUtilisateur
         $offre->lieu = $lieu;
         $offre->idemployeur = $_SESSION['profile']['userId'];
         $offre->save();
+    }
+
+    /**
+     * Permet d'ajouter une candidature à une offre
+     * @param $transport
+     * @param $idOffre
+     */
+    public function postulerAUneOffre($transport,$idOffre){
+        $candidature = new Candidature();
+        $candidature->idcandidat = $_SESSION['profile']['idUser'];
+        $candidature->idbesointransport = $transport;
+        $candidature->idoffre = $idOffre;
+        $candidature->save();
     }
 }
