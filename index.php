@@ -121,7 +121,10 @@ $app->post('/envoyerEmail/', function(){
     }
 })->name('envoyerEmail');
 
-
+$app->get('/connexion/',function(){
+    $controleur= new \justjob\controleur\controleurAffichage();
+    $controleur->afficherConnexion();
+})->name('connexion');
 
 
 $app->run();

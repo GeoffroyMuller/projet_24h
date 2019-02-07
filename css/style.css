@@ -4,3 +4,12 @@
 #navtriche{
     margin-bottom: 15px;
 }
+
+#categorie{
+    overflow: auto;
+    height: 300px;
+}
+
+.categorie-label{
+    font-size : 0.8em;
+}
