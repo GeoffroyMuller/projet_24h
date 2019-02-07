@@ -9,7 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
 
-    <body>
+    <body style="background-color:lavender;">
       <nav class="navbar-inverse">
           <div class="container-fluid">
               <div class="navbar-header">
@@ -19,7 +19,7 @@
               <ul class="nav navbar-nav">
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Offres<span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                          <li><a href="creerOffres.html">Mes offres</a></li>
+                          <li><a href="mesOffres.html">Mes offres</a></li>
                           <li><a href="ListeOffres.html">Consulter les offres</a></li>
                       </ul>
                   </li>
@@ -42,30 +42,38 @@
       </nav>
 
       <div class="row">
-          <div class="col-sm-3" style="background-color:lavenderblush;">
+          <div class="col-sm-3" style="background-color:lavender;">
             <img src="../images/compte-utilisateur-1.PNG" alt="logo" style="width:30%;align:center">
           </div>
 
-          <div class="col-sm-8 ml-3" style="background-color:lavenderblush;">
+          <div class="col-sm-8 ml-3" style="background-color:lavender;">
             <h1>Mon profil</h1>
+            <ul class="list-group">
+             <li class="list-group-item">Prénom et Nom</li>
+             <li class="list-group-item">Adresse postale</li>
+             <li class="list-group-item">Adresse email</li>
+             <li class="list-group-item">Handicap</li>
+            </ul>
           </div>
       </div>
-      <div class="col-sm-8" style="background-color:lavenderblush;">
+
+      <div class="col-sm-12" style="background-color:lavender;">
         <div class="container">
           <h2>Ma lettre de motivation</h2>
           <p>Rédigez ici votre lettre de motivation afin que les employeurs puissent la lire.</p>
           <form>
             <div class="form-group">
-              <label for="comment">Ma lettre</label>
+              <label for="comment">Ma lettre :</label>
               <textarea class="form-control" rows="5" id="comment"></textarea>
             </div>
           </form>
         </div>
       </div>
-
-      <button type="button" class="btn btn-info">
-        Contact
+      <div class="mx-auto" style="width: 10%;margin: 0 auto;">
+      <button type="button" class="btn btn-info mx-auto" style="width: 70%;margin: 0 auto;">
+        <p style="font-size:2em">Contact</p>
       </button>
+    </div>
 
     </body>
 

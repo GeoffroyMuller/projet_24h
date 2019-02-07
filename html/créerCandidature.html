@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>JustJob - Créer un trajet</title>
+    <title>JustJob - Liste des offres d'emploi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 </head>
+
 <body>
-<nav class="navbar-inverse">
+<nav class="navbar-inverse" id="navtriche">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="../index.html">JustJob</a>
@@ -40,28 +44,18 @@
     </div>
 </nav>
 
-<h2>Créer un nouveau trajet</h2>
 <div class="col sm-4">
+
+    <p>
+        En remplissant ce formulaire, l'employeur recevra votre lettre de motivation ainsi que votre profil afin de l'analyser
+    </p>
     <form>
         <div class="form-group">
-            <label for="depart">Départ</label>
-            <input type="text" class="form-control" id="depart" aria-describedby="villeDepart" placeholder="Entrer la ville de départ">
-        </div>
-        <div class="form-group">
-            <label for="arrive">Arrivée</label>
-            <input type="text" class="form-control" id="arrive" placeholder="Entrer la ville d'arrivée">
+            <label for="motiv">Lettre de Motivation</label>
+            <input type="text"class="form-control" id="motiv" aria-describedby="villeDepart" placeholder="" />
         </div>
 
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="vehiculeClassique">
-            <label class="form-check-label" for="vehiculeClassique">Véhicule Classique</label>
-        </div>
-
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="vehiculeAmenage">
-            <label class="form-check-label" for="vehiculeAmenage">Vehicule Aménagé</label>
-        </div>
-        <button type="submit" class="btn btn-primary" id="boutonCréation">Créer ce trajet</button>
+        <button type="submit" class="btn btn-primary" id="boutonCréation">Postuler</button>
     </form>
 </div>
 </body>
