@@ -1,5 +1,6 @@
 window.addEventListener("load",()=>{
 
+    console.log('Module JS charge');
     let mdp1 = document.querySelector("#inputPassword");
     let mdp2 = document.querySelector("#verifinputPassword");
 
