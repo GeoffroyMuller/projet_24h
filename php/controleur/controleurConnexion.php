@@ -16,7 +16,7 @@ class controleurConnexion
      * @param $uName
      * @param $uPass
      */
-    public function inscrire($uName, $uPass,$uAdresse){
+    public function inscrire($uName, $uPass,$uAdresse,$email){
         $hash = password_hash($uPass, PASSWORD_DEFAULT);
         try {
             if ($this->verifierNomUtilisateur($uName)) {
@@ -24,6 +24,7 @@ class controleurConnexion
                 $utilisateur->pass = $hash;
                 $utilisateur->nom = $uName;
                 $utilisateur->adresse = $uAdresse;
+                $utilisateur->email = $email;
                 $utilisateur->save();
 
             }

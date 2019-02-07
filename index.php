@@ -12,7 +12,7 @@ define ('SITE_ROOT', realpath(dirname(__FILE__)));
 use Illuminate\Database\Capsule\Manager as DB;
 
 $db = new DB();
-$db->addConnection(parse_ini_file('./src/conf/conf.ini'));
+$db->addConnection(parse_ini_file('./php/conf/conf.ini'));
 $db->setAsGlobal();
 $db->bootEloquent();
 
@@ -22,10 +22,7 @@ $app = new \Slim\Slim ;
 
 
 
-$app->get('/',function(){
-    $app =\Slim\Slim::getInstance();
-    $app->redirect($app->urlFor('listes'));
-})->name('home');
+
 
 
 
@@ -72,14 +69,16 @@ $app->post('/postuler/',function(){
 })->name('postuler');
 
 $app->post('/inscriptionprocess/',function(){
-    if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['adresse'])){
-        $username = filter_var($_POST['username'],FILTER_SANITIZE_STRING);
-        $adresse = filter_var($_POST['adresse'], FILTER_SANITIZE_STRING);
+    if(isset($_POST['inputUserName']) && isset($_POST['inputPassword']) && isset($_POST['inputadresse']) &&
+    isset($_POST['inputEmail'])){
+        $username = filter_var($_POST['inputUserName'],FILTER_SANITIZE_STRING);
+        $adresse = filter_var($_POST['inputadresse'], FILTER_SANITIZE_STRING);
+        $email = filter_var($_POST['inputEmail'],FILTER_SANITIZE_EMAIL);
         $controleur = new \justjob\controleur\controleurConnexion();
-        $controleur->inscrire($username, $_POST['password'],$adresse);
+        $controleur->inscrire($username, $_POST['inputPassword'],$adresse,$email);
     }else{
         $app = \Slim\Slim::getInstance();
-        $app->redirect($app->urlFor('erreur',['msg'=>'Veuillez entrer un nom d\'utilisateur et un mot de passe']));
+        $app->redirect($app->urlFor('inscription'));
     }
     $app = \Slim\Slim::getInstance();
     $app->redirect($app->urlFor('connexion'));
@@ -125,6 +124,12 @@ $app->get('/connexion/',function(){
     $controleur= new \justjob\controleur\controleurAffichage();
     $controleur->afficherConnexion();
 })->name('connexion');
+
+$app->get('/inscription/',function(){
+    $controleur= new \justjob\controleur\controleurAffichage();
+    $controleur->afficherInscription();
+})->name('inscription');
+
 
 
 $app->run();
