@@ -342,7 +342,7 @@ END;
 
     public function htmlHome(){
         $html = <<<END
-  <h1 style="text-align:center;">JustJob</h1>
+    <h1 style="text-align:center;">JustJob</h1>
 
 
     <div class="container" style="width:30%">
@@ -359,19 +359,19 @@ END;
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
           <div class="item active">
-            <img src="../../images/offre.jpg" alt="Mirabelle" style="width:100%;">
+            <img src="../images/offre.jpg" alt="Mirabelle" style="width:100%;">
           </div>
 
           <div class="item">
-            <img src="../../images/offre.jpg" alt="Mushu" style="width:100%;">
+            <img src="../images/offre.jpg" alt="Mushu" style="width:100%;">
           </div>
 
           <div class="item">
-            <img src="../../images/offre.jpg" alt="Chaton" style="width:100%;">
+            <img src="../images/offre.jpg" alt="Chaton" style="width:100%;">
           </div>
 
           <div class="item">
-            <img src="../../images/offre.jpg" alt="Party" style="width:100%;">
+            <img src="../images/offre.jpg" alt="Party" style="width:100%;">
           </div>
 
         </div>
@@ -389,7 +389,7 @@ END;
     </div>
 
 <footer style="text-align:center;">
-    <p>by</p><img src="images/logo2.PNG" alt="logo" style="width:10%">
+    <p>by</p><img src="../images/logo2.png" alt="logo" style="width:10%">
 </footer>
 
 END;
