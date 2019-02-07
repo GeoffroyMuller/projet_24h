@@ -31,11 +31,30 @@ class vue
         $this->app = \Slim\Slim::getInstance();
     }
 
+    public function htmlConnexion(){
+        $html ='aya';
+
+        return $html;
+    }
+
+    public function htmlInscription(){
+        $html='aya';
+        return $html;
+    }
+
     public function render(){
 
         switch($this->selecteur){
-            case 'LIST_ITEMS' :
+            case 'LISTE_OFFRE' :
                 $content = $this->htmlItemsListe();
+                break;
+
+            case 'CONNEXION' :
+                $content = $this->htmlConnexion();
+                break;
+
+            case 'INSCRIPTION' :
+                $content = $this->htmlInscription();
                 break;
         }
         $html=<<<END
