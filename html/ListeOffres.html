@@ -1,122 +1,207 @@
 <!DOCTYPE html>
-  <html>
-  <head>
+<html>
+<head>
     <title>Liste des offres d'emploi</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  </head>
+</head>
 
-    <body>
-      <nav class="navbar-inverse">
-          <div class="container-fluid">
-              <div class="navbar-header">
-                  <a class="navbar-brand" href="../index.html">Accueil</a>
-              </div>
+<body>
+<nav class="navbar-inverse" id="navtriche">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="../index.html">Accueil</a>
+        </div>
 
-              <ul class="nav navbar-nav">
-                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Offres<span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                          <li><a href="creerOffres.html">Mes offres</a></li>
-                          <li><a href="ListeOffres.html">Consulter les offres</a></li>
-                      </ul>
-                  </li>
+        <ul class="nav navbar-nav">
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Offres<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="creerOffres.html">Mes offres</a></li>
+                    <li><a href="ListeOffres.html">Consulter les offres</a></li>
+                </ul>
+            </li>
 
-                  <li><a href="candidature.html">Mes candidatures</a></li>
+            <li><a href="candidature.html">Mes candidatures</a></li>
 
-                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Transports<span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="mesTrajets.html">Mes trajets</a></li>
-                        <li><a href="consulterTrajets.html">Consulter les trajets</a></li>
-                      </ul>
-                  </li>
-              </ul>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Transports<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="mesTrajets.html">Mes trajets</a></li>
+                    <li><a href="consulterTrajets.html">Consulter les trajets</a></li>
+                </ul>
+            </li>
+        </ul>
 
-              <ul class="nav navbar-nav navbar-right">
-                  <li><a href="inscription.html"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
-                  <li><a href="connexion.html"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
-              </ul>
-          </div>
-      </nav>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="inscription.html"><span class="glyphicon glyphicon-user"></span> Inscription</a></li>
+            <li><a href="connexion.html"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+        </ul>
+    </div>
+</nav>
 
-      <div class="container">
-          <form class="form-horizontal" action="/action_page.php">
-              <div class="form-group">
-                  <label class="control-label col-sm-2" for="metier">Quoi ?</label>
-                  <div class="col-sm-10">
-                      <input type="metier" class="form-control" id="metier" placeholder="Entrer métier" name="metier">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label class="control-label col-sm-2" for="ville">Où ?</label>
-                  <div class="col-sm-10">
-                      <input type="ville" class="form-control" id="ville" placeholder="Entrer Ville" name="ville">
-                  </div>
-              </div>
-              <div class="form-group">
-              </div>
-              <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default">Rechercher</button>
-                  </div>
-              </div>
-          </form>
-      </div>
+<div class="container">
+    <form class="form-horizontal" action="/action_page.php">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="metier">Quoi ?</label>
+            <div class="col-sm-5">
+                <input type="metier" class="form-control" id="metier" placeholder="Entrer métier" name="metier">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="ville">Où ?</label>
+            <div class="col-sm-5">
+                <input type="ville" class="form-control" id="ville" placeholder="Entrer Ville" name="ville">
+            </div>
+        </div>
+        <div class="form-group">
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Rechercher</button>
+            </div>
+        </div>
+    </form>
+</div>
 
-      <div class="row">
-          <div class="col-sm-3 mx-auto" style="width: 200px;">
-              <form method ="post">
-              <div class="form-group mx-auto" style="width: 200px;">
-                  <label for="Distance">Distance</label>
-                  <select class="form-control" id="Distance">
-                      <option>Lieu exact</option>
-                      <option>Dans un rayon de 5 km</option>
-                      <option>Dans un rayon de 10 km</option>
-                      <option>Dans un rayon de 15 km</option>
-                      <option>Dans un rayon de 25 km</option>
-                      <option>Dans un rayon de 50 km</option>
-                      <option>Dans un rayon de 100 km</option>
-                  </select>
-              </div>
-              <div class="form-group mx-auto " style="width: 200px;">
-                  <label for="estimSalaire">Estimation Salaire</label>
-                  <select class="form-control" id="estimSalaire">
-                      <option>Lieu exact</option>
-                      <option>20 000 €</option>
-                      <option>25 000 €</option>
-                      <option>30 000 €</option>
-                      <option>35 000 €</option>
-                      <option>45 000 €</option>
-                  </select>
-              </div>
-              <div class="form-group mx-auto    " style="width: 200px;">
-                  <label for="Lieu">Lieu</label>
-                  <textarea class="form-control" id="Lieu" rows="1"></textarea>
-              </div>
-          </form></div>
-          <div class="col-sm-9"><div class="container float-right ">
-              <div class="panel-group">
+<div class="row">
+    <div class="col-sm-3 mx-auto border" style="width: 200px;">
+        <form class="triche" method ="post">
+            <div class="form-group mx-auto" style="width: 200px;">
+                <label for="Distance">Distance</label>
+                <select class="form-control" id="Distance">
+                    <option>Lieu exact</option>
+                    <option>Dans un rayon de 5 km</option>
+                    <option>Dans un rayon de 10 km</option>
+                    <option>Dans un rayon de 15 km</option>
+                    <option>Dans un rayon de 25 km</option>
+                    <option>Dans un rayon de 50 km</option>
+                    <option>Dans un rayon de 100 km</option>
+                </select>
+            </div>
+            <div class="form-group mx-auto " style="width: 200px;">
+                <label for="estimSalaire">Estimation Salaire</label>
+                <select class="form-control" id="estimSalaire">
+                    <option>Lieu exact</option>
+                    <option>20 000 €</option>
+                    <option>25 000 €</option>
+                    <option>30 000 €</option>
+                    <option>35 000 €</option>
+                    <option>45 000 €</option>
+                </select>
+            </div>
+            <div class="form-group mx-auto    " style="width: 200px;">
+                <label for="Lieu">Lieu</label>
+                <textarea class="form-control" id="Lieu" rows="1"></textarea>
+            </div>
+            <div class="form-group mx-auto    " style="width: 200px;">
+                <label for="Cat">Catégorie</label>
+                <textarea class="form-control" id="Cat" rows="1"></textarea>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check1">
+                    <label class="form-check-label" for="check1">Administratif : assistant comptabe</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check2">
+                    <label class="form-check-label" for="check2">Administratif : comptable</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check3">
+                    <label class="form-check-label" for="check3">Administratif : secrétaire</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check4">
+                    <label class="form-check-label" for="check4">Administratif : standardiste</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check5">
+                    <label class="form-check-label" for="check5">Bâtiment/Travaux Publics : conducteur d'engin</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check6">
+                    <label class="form-check-label" for="check6">Bâtiment/Travaux Publics : manoeuvre</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check7">
+                    <label class="form-check-label" for="check7">Bâtiment/Travaux Publics : maçon</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check8">
+                    <label class="form-check-label" for="check8">Bâtiment/Travaux Publics : électricien</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check9">
+                    <label class="form-check-label" for="check9">Commerce et vente : assistant commercial</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check10">
+                    <label class="form-check-label" for="check10">Commerce et vente : commercial</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check11">
+                    <label class="form-check-label" for="check11">Commerce et vente : manager</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check12">
+                    <label class="form-check-label" for="check12">Commerce et vente : vendeur polyvalent</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check13">
+                    <label class="form-check-label" for="check13">Logistique : magasinier</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check14">
+                    <label class="form-check-label" for="check14">Logistique : préparateur de commandes</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check15">
+                    <label class="form-check-label" for="check15">Restauration et hôtellerie  : aide cuisinier</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check16">
+                    <label class="form-check-label" for="check16">Restauration et hôtellerie  : cuisinier</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check17">
+                    <label class="form-check-label" for="check18">Restauration et hôtellerie  : employé polyvalent</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check18">
+                    <label class="form-check-label" for="check18">Restauration et hôtellerie  : serveur</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check19">
+                    <label class="form-check-label" for="check19">Transport : cariste</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check20">
+                    <label class="form-check-label" for="check20">Transport : chauffeur de bus</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check21">
+                    <label class="form-check-label" for="check21">Transport : conducteur poids lourd</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check22">
+                    <label class="form-check-label" for="check22">Transport : livreur</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-9"><div class="container float-right triche">
+        <div class="panel-group">
 
-                  <div class="panel panel-success">
-                      <div class="panel-heading">Livreur en fauteuil</div>
-                      <div class="panel-body">À fond les ballons</div>
-                  </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">Livreur en fauteuil</div>
+                <div class="panel-body">À fond les ballons</div>
+            </div>
 
-                  <div class="panel panel-info">
-                      <div class="panel-heading">Dresseur de chien d'aveugles aveugles</div>
-                      <div class="panel-body">Pour une relation maître-chien fusionnelle</div>
-                  </div>
 
-                  <div class="panel panel-warning">
-                      <div class="panel-heading">Cours de chant pour les sourds</div>
-                      <div class="panel-body">Prothèses auditives à prix réduits</div>
-                  </div>
+        </div>
+    </div></div>
+</div>
+</body>
 
-              </div>
-          </div></div>
-      </div>
-    </body>
-
-  </html>
+</html>
