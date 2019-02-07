@@ -32,27 +32,81 @@
       </nav>
 
       <div class="container">
-        <h2>Liste des offres</h2>
-        <div class="panel-group">
-
-          <div class="panel panel-success">
-            <div class="panel-heading">Livreur en fauteuil</div>
-            <div class="panel-body">À fond les ballons</div>
-          </div>
-
-          <div class="panel panel-info">
-            <div class="panel-heading">Dresseur de chien d'aveugles aveugles</div>
-            <div class="panel-body">Pour une relation maître-chien fusionnelle</div>
-          </div>
-
-          <div class="panel panel-warning">
-            <div class="panel-heading">Cours de chant pour les sourds</div>
-            <div class="panel-body">Prothèses auditives à prix réduits</div>
-          </div>
-
-        </div>
+          <form class="form-horizontal" action="/action_page.php">
+              <div class="form-group">
+                  <label class="control-label col-sm-2" for="metier">Quoi ?</label>
+                  <div class="col-sm-10">
+                      <input type="metier" class="form-control" id="metier" placeholder="Entrer métier" name="metier">
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-sm-2" for="ville">Où ?</label>
+                  <div class="col-sm-10">
+                      <input type="ville" class="form-control" id="ville" placeholder="Entrer Ville" name="ville">
+                  </div>
+              </div>
+              <div class="form-group">
+              </div>
+              <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Rechercher</button>
+                  </div>
+              </div>
+          </form>
       </div>
 
+      <div class="row">
+          <div class="col-sm-3 mx-auto" style="width: 200px;">
+              <form method ="post">
+              <div class="form-group mx-auto" style="width: 200px;">
+                  <label for="Distance">Distance</label>
+                  <select class="form-control" id="Distance">
+                      <option>Lieu exact</option>
+                      <option>Dans un rayon de 5 km</option>
+                      <option>Dans un rayon de 10 km</option>
+                      <option>Dans un rayon de 15 km</option>
+                      <option>Dans un rayon de 25 km</option>
+                      <option>Dans un rayon de 50 km</option>
+                      <option>Dans un rayon de 100 km</option>
+                  </select>
+              </div>
+              <div class="form-group mx-auto " style="width: 200px;">
+                  <label for="estimSalaire">Estimation Salaire</label>
+                  <select class="form-control" id="estimSalaire">
+                      <option>Lieu exact</option>
+                      <option>20 000 €</option>
+                      <option>25 000 €</option>
+                      <option>30 000 €</option>
+                      <option>35 000 €</option>
+                      <option>45 000 €</option>
+                  </select>
+              </div>
+              <div class="form-group mx-auto    " style="width: 200px;">
+                  <label for="Lieu">Lieu</label>
+                  <textarea class="form-control" id="Lieu" rows="1"></textarea>
+              </div>
+          </form></div>
+          <div class="col-sm-9"><div class="container float-right ">
+              <div class="panel-group">
+
+                  <div class="panel panel-success">
+                      <div class="panel-heading">Livreur en fauteuil</div>
+                      <div class="panel-body">À fond les ballons</div>
+                  </div>
+
+                  <div class="panel panel-info">
+                      <div class="panel-heading">Dresseur de chien d'aveugles aveugles</div>
+                      <div class="panel-body">Pour une relation maître-chien fusionnelle</div>
+                  </div>
+
+                  <div class="panel panel-warning">
+                      <div class="panel-heading">Cours de chant pour les sourds</div>
+                      <div class="panel-body">Prothèses auditives à prix réduits</div>
+                  </div>
+
+              </div>
+          </div></div>
+      </div>
     </body>
 
   </html>
