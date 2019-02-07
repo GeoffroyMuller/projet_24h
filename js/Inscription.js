@@ -24,13 +24,16 @@ function selectnon(){
 
 function afficherchamp(event) {
     let champ =document.querySelector("#descriphandicap");
-    $(champ).show();
+    //champ.show();
+    champ.value="";
+
 }
 
 
 function masquerchamp(event) {
     let champ =document.querySelector("#descriphandicap");
-    $(champ).hide();
+    //champ.hide();
+    champ.value="Pas de handicap";
 }
 
 function verifmdp(event) {
