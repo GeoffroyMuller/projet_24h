@@ -147,6 +147,13 @@ $app->get('/offresEmplois/',function (){
     $controleur->afficherListesDesOffresEmplois();
 })->name('offreEmplois');
 
+$app->get('/deconnexion/',function(){
+    $controleur = new \justjob\controleur\controleurConnexion();
+    $controleur->deconnexion();
+    $app = \Slim\Slim::getInstance();
+    $app->redirect($app->urlFor('connexion'));
+
+})->name('deconnexion');
 
 
 $app->run();

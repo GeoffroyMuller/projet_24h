@@ -14,7 +14,7 @@ use justjob\vue\vue;
 class controleurAffichage
 {
     public function afficherListesDesOffresEmplois(){
-        $offres = \justjob\model\offreEmploi::all()->get();
+        $offres = \justjob\model\offreEmploi::all();
         $vue = new vue($offres,'LISTE_OFFRE');
         $vue->render();
     }

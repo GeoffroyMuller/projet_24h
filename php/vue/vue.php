@@ -264,10 +264,11 @@ END;
         foreach ($this->elements as $offre){
             $nom = $offre->nom;
             $descr = $offre->description;
-            $lieux = $offre->lieux;
-
+            $lieux = $offre->lieu;
+            
             $html=$html.<<<END
   <div class="col-sm-9"><div class="container triche">
+  <a href="">
         <div class="panel-group">
 
             <div class="panel panel-info">
@@ -276,6 +277,8 @@ END;
             </div>
 
         </div>
+        </div>
+        </a>
     </div></div>
 END;
 
@@ -287,7 +290,7 @@ END;
     }
 
     public function render(){
-
+        $urlDeco = $this->app->urlFor('deconnexion');
         $estConnecte = isset($_SESSION['profile']);
         $consulterOffre = $this->app->urlFor('offreEmplois');
         $urlInscription = $this->app->urlFor('inscription');
@@ -320,8 +323,8 @@ END;
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="inscription.html"><span class="glyphicon glyphicon-user"></span> Bonjour, $nom !</a></li>
-              <li><a href="$urlConnexion"><span class="glyphicon glyphicon-log-in"></span> Deconnexion</a></li>
+              <li><a href=""><span class="glyphicon glyphicon-user"></span> Bonjour, $nom !</a></li>
+              <li><a href="$urlDeco"><span class="glyphicon glyphicon-log-in"></span> Deconnexion</a></li>
           </ul>
       </div>
   </nav>
